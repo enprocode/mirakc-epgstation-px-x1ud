@@ -1,0 +1,44 @@
+name: 'Docker image publish'
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - 'mirakc-epgstation/**'
+  pull_request:
+    branches: ["main"]
+    paths:
+      - 'mirakc-epgstation/**'
+  workflow_dispatch:
+
+env:
+  IMAGE_NAME: enprocode/mirack-epgstation-px-x1ud
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout Repository'
+        uses: actions/checkout@v4
+
+      - name: 'Set up QEMU'
+        uses: docker/setup-qemu-action@v3
+
+      - name: 'Set up Docker Buildx'
+        uses: docker/setup-buildx-action@v3
+
+      - name: 'Login to Docker Hub'
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: 'Build (and push on main)'
+        uses: docker/build-push-action@v6
+        with:
+          context: mirakc-epgstation/docker
+          file: mirakc-epgstation/docker/debian/Dockerfile
+          platforms: ${{ github.event_name == 'pull_request' && 'linux/amd64' || 'linux/amd64,linux/arm64' }}
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ env.IMAGE_NAME }}:latest
