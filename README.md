@@ -19,6 +19,7 @@ PX-x1UDシリーズ地デジチューナー関連のリポジトリ一式。
 
 - [driver.md](docs/driver.md) — ドライバインストール手順
 - [mirakc-epgstation.md](docs/mirakc-epgstation.md) — Docker構築手順
+- [ci-secrets.md](docs/ci-secrets.md) — CI（Docker Hub push）用Secrets設定手順
 
 ## 導入順序
 
@@ -34,7 +35,7 @@ PX-x1UDシリーズ地デジチューナー関連のリポジトリ一式。
 | `dependency-review.yml` | `driver/**`, `.github/workflows/**` | PR時の依存関係レビュー（公式テンプレート準拠） |
 | `build.yml` | `mirakc-epgstation/**` | Dockerイメージをビルドし Docker Hub (`junch25/mirack-epgstation-px-x1ud`) へpush（push時はamd64/arm64、PR時はamd64のみのビルド検証） |
 
-※ いずれも一般的な標準構成で再作成したものです。`build.yml`の実行には `DOCKERHUB_USERNAME` / `DOCKERHUB_TOKEN` のSecrets設定が別途必要です。
+※ いずれも一般的な標準構成で再作成したものです。`build.yml`の実行には `DOCKERHUB_USERNAME` / `DOCKERHUB_TOKEN` のSecrets設定が別途必要です（手順: [ci-secrets.md](docs/ci-secrets.md)）。
 
 ## 比較メモ (beta版 vs 現行版)
 
