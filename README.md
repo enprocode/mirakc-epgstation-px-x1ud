@@ -1,5 +1,10 @@
 # px-x1ud-driver
 
+[![Docker image publish](https://github.com/enprocode/mirakc-epgstation-px-x1ud/actions/workflows/build.yml/badge.svg)](https://github.com/enprocode/mirakc-epgstation-px-x1ud/actions/workflows/build.yml)
+[![Docker Pulls](https://img.shields.io/docker/pulls/enprocode/mirack-epgstation-px-x1ud)](https://hub.docker.com/r/enprocode/mirack-epgstation-px-x1ud)
+[![Docker Image Size](https://img.shields.io/docker/image-size/enprocode/mirack-epgstation-px-x1ud)](https://hub.docker.com/r/enprocode/mirack-epgstation-px-x1ud)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 PX-x1UDシリーズ地デジチューナー関連のリポジトリ一式。
 
 ## フォルダ構成と役割
@@ -7,7 +12,7 @@ PX-x1UDシリーズ地デジチューナー関連のリポジトリ一式。
 | フォルダ | 役割 | 状態 |
 |---|---|---|
 | `driver` | PX-x1UDのLinuxドライバインストールスクリプト。他方の前提となる作業。 | 現行 |
-| `mirakc-epgstation` | mirakc + epgstationのDockerビルド本体。Docker Hub (`enprocode/mirack-epgstation-px-x1ud`) に公開イメージあり、GitHub Actionsでビルド自動化済み。 | 現行・メイン |
+| `mirakc-epgstation` | mirakc + epgstationのDockerビルド本体。Docker Hub (`enprocode/mirack-epgstation-px-x1ud`) と GitHub Container Registry (`ghcr.io/enprocode/mirakc-epgstation-px-x1ud`) の両方に公開イメージあり、GitHub Actionsでビルド自動化済み。 | 現行・メイン |
 
 ## ドキュメント
 
@@ -29,7 +34,7 @@ PX-x1UDシリーズ地デジチューナー関連のリポジトリ一式。
 | ワークフロー | 対象パス | 内容 |
 |---|---|---|
 | `dependency-review.yml` | `driver/**`, `.github/workflows/**` | PR時の依存関係レビュー |
-| `build.yml` | `mirakc-epgstation/**`, タグ `v*` | Dockerイメージをビルドし Docker Hub へpush |
+| `build.yml` | `mirakc-epgstation/**`, タグ `v*` | Dockerイメージをビルドし Docker Hub / GitHub Container Registry (GHCR) へpush |
 | `release.yml` | `VERSION` | バージョンタグの作成とGitHub Releaseの自動作成（詳細は下記「バージョン管理・リリース」） |
 
 ※ いずれも一般的な標準構成で再作成したものです。`build.yml`の実行には `DOCKERHUB_USERNAME` / `DOCKERHUB_TOKEN` のSecrets設定が別途必要です（手順: [ci-secrets.md](docs/ci-secrets.md)）。

@@ -7,6 +7,8 @@
 
 未設定のままだと、`docker/login-action` でログインに失敗し、mainへのpush時にワークフローがエラーになります（PR時のビルド検証ジョブはログイン不要なので影響ありません）。
 
+なお GitHub Container Registry (`ghcr.io/enprocode/mirakc-epgstation-px-x1ud`) へのpushは、GitHub Actionsが自動発行する `GITHUB_TOKEN` を使うため、追加のSecrets登録は不要です。
+
 ## 1. Docker Hub でアクセストークンを発行する
 
 1. [Docker Hub](https://hub.docker.com/) にログイン
@@ -26,6 +28,12 @@
 
 - main ブランチへ `mirakc-epgstation/**` 配下の変更を push するか、Actions タブから `Docker image publish` ワークフローを `workflow_dispatch` で手動実行する
 - ビルド完了後、Docker Hub (`enprocode/mirack-epgstation-px-x1ud`) に `latest` タグでイメージが push されていることを確認する
+
+## GHCRのパッケージ公開範囲について
+
+GHCRへの初回push後、パッケージがデフォルトで **Private** になっている場合があります。公開したい場合は以下で確認・変更してください。
+
+- GitHubリポジトリ → 右サイドバー **Packages** → 対象パッケージを開く → **Package settings** → **Change visibility** で `Public` に変更
 
 ## 参考
 
