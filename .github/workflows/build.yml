@@ -5,10 +5,12 @@ on:
     tags: ["v*"]
     paths:
       - 'mirakc-epgstation/**'
+      - '.github/workflows/build.yml'
   pull_request:
     branches: ["main"]
     paths:
       - 'mirakc-epgstation/**'
+      - '.github/workflows/build.yml'
   workflow_dispatch:
 
 env:
