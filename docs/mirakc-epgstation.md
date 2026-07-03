@@ -15,10 +15,10 @@ This Docker has been tested on Debian systems.
 Please use it according to your own environment.
 
 ## Driver install
-px-x1udのドライバーインストールが必要な場合、下記からインストールお願いします。  
-If you need to install the driver for px-x1ud, please install it from the following link.
+px-x1udのドライバーインストールが必要な場合、下記を参照してください。  
+If you need to install the driver for px-x1ud, please refer to the following.
 
-[px-x1ud-driver-install](https://github.com/Junch25/px-x1ud-driver-install)
+[driver](driver.md)
 
 
 ## Docker Setup
@@ -29,14 +29,13 @@ $ sudo apt install docker-compose
 ```
 ## install / インストール
 ```bash
-$ git clone https://github.com/Junch25/mirack-epgstation-px-x1ud.git
-$ cd mirack-epgstation-px-x1ud/setup
+$ cd mirakc-epgstation/setup
 
 # Edit docker-compose.yml / ご自身の環境に合わせて修正ください。
 $ vim docker-compose.yml
 
 # Edit config.yml / ご自身の環境に合わせて修正ください。
-$ vim ../mirakc/config.yml
+$ vim config.yml
 
 # install / インストール実行
 $ ./setup.sh
@@ -51,8 +50,7 @@ $ docker-compose down
 ```
 ## build / 構築
 ```bash
-$ git clone https://github.com/Junch25/mirack-epgstation-px-x1ud.git
-$ cd mirack-epgstation-px-x1ud/docker/debian
+$ cd mirakc-epgstation/docker/debian
 
 # setup docker-compose.yml
 $ vim docker-compose.yml

@@ -1,10 +1,9 @@
-# px-x1ud-driver-install
+# driver
 px-x1ud driver installation script.
 
 ```bash
 ## Driver Installation
-$ git clone https://github.com/Junch25/px-x1ud-driver-install.git
-$ cd px-x1ud-driver-install
+$ cd driver
 $ ./driver-install.sh
 
 ## system reboot
