@@ -25,8 +25,8 @@ If you need to install the driver for px-x1ud, please refer to the following.
 ```bash
 $ curl -sSL https://get.docker.com/ | CHANNEL=stable sh
 $ sudo usermod -aG docker $USER
-$ sudo apt install docker-compose
 ```
+上記スクリプトで Docker Compose v2（`docker compose`プラグイン）も併せてインストールされます。
 ## install / インストール
 ```bash
 $ cd mirakc-epgstation/setup
@@ -42,11 +42,11 @@ $ ./setup.sh
 
 ## Ex. docker command
 # start
-$ docker-compose up -d
+$ docker compose up -d
 # log
-$ docker-compose logs -f
+$ docker compose logs -f
 # stop
-$ docker-compose down
+$ docker compose down
 ```
 ## build / 構築
 ```bash
@@ -59,11 +59,11 @@ $ vim docker-compose.yml
 $ vim ../mirakc/config.yml
 
 # start
-$ docker-compose up -d
+$ docker compose up -d
 
 # log
-$ docker-compose logs -f
+$ docker compose logs -f
 
 # stop
-$ docker-compose down
+$ docker compose down
 ```
