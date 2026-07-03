@@ -6,8 +6,8 @@ PX-x1UDシリーズ地デジチューナー関連のリポジトリ一式。
 
 | フォルダ | 役割 | 状態 |
 |---|---|---|
-| `px-x1ud-driver` | PX-x1UDのLinuxドライバインストールスクリプト。他方の前提となる作業。 | 現行 |
-| `mirakc-epgstation-px-x1ud` | mirakc + epgstationのDockerビルド本体。Docker Hub (`junch25/mirack-epgstation-px-x1ud`) に公開イメージあり、GitHub Actionsでビルド自動化済み。 | 現行・メイン |
+| `driver` | PX-x1UDのLinuxドライバインストールスクリプト。他方の前提となる作業。 | 現行 |
+| `mirakc-epgstation` | mirakc + epgstationのDockerビルド本体。Docker Hub (`junch25/mirack-epgstation-px-x1ud`) に公開イメージあり、GitHub Actionsでビルド自動化済み。 | 現行・メイン |
 
 旧版だった`beta-mirakc-px-x1ud-docker-build`（`mirakc-epgstation-px-x1ud`に統合済みのベータ版）は削除済み。
 
@@ -17,13 +17,13 @@ PX-x1UDシリーズ地デジチューナー関連のリポジトリ一式。
 
 各リポジトリのREADMEを `docs/` に集約しています。
 
-- [px-x1ud-driver.md](docs/px-x1ud-driver.md) — ドライバインストール手順
-- [mirakc-epgstation-px-x1ud.md](docs/mirakc-epgstation-px-x1ud.md) — Docker構築手順
+- [driver.md](docs/driver.md) — ドライバインストール手順
+- [mirakc-epgstation.md](docs/mirakc-epgstation.md) — Docker構築手順
 
 ## 導入順序
 
-1. `px-x1ud-driver` でドライバをインストール
-2. `mirakc-epgstation-px-x1ud/setup` で mirakc + epgstation をDocker構築
+1. `driver` でドライバをインストール
+2. `mirakc-epgstation/setup` で mirakc + epgstation をDocker構築
 
 ## CI設定 (.github/workflows)
 
@@ -31,8 +31,8 @@ PX-x1UDシリーズ地デジチューナー関連のリポジトリ一式。
 
 | ワークフロー | 対象パス | 内容 |
 |---|---|---|
-| `dependency-review.yml` | `px-x1ud-driver/**` | PR時の依存関係レビュー（公式テンプレート準拠） |
-| `build.yml` | `mirakc-epgstation-px-x1ud/**` | Dockerイメージをビルドし Docker Hub (`junch25/mirack-epgstation-px-x1ud`) へpush |
+| `dependency-review.yml` | `driver/**`, `.github/workflows/**` | PR時の依存関係レビュー（公式テンプレート準拠） |
+| `build.yml` | `mirakc-epgstation/**` | Dockerイメージをビルドし Docker Hub (`junch25/mirack-epgstation-px-x1ud`) へpush（push時はamd64/arm64、PR時はamd64のみのビルド検証） |
 
 ※ いずれも一般的な標準構成で再作成したものです。`build.yml`の実行には `DOCKERHUB_USERNAME` / `DOCKERHUB_TOKEN` のSecrets設定が別途必要です。
 
