@@ -3,7 +3,7 @@ on:
   pull_request:
     branches: ["main"]
     paths:
-      - 'px-x1ud-driver/**'
+      - 'driver/**'
 
 permissions:
   contents: read

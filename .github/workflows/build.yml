@@ -3,7 +3,7 @@ on:
   push:
     branches: ["main"]
     paths:
-      - 'mirakc-epgstation-px-x1ud/**'
+      - 'mirakc-epgstation/**'
   workflow_dispatch:
 
 env:
@@ -31,8 +31,8 @@ jobs:
       - name: 'Build and push'
         uses: docker/build-push-action@v6
         with:
-          context: mirakc-epgstation-px-x1ud/docker
-          file: mirakc-epgstation-px-x1ud/docker/debian/Dockerfile
+          context: mirakc-epgstation/docker
+          file: mirakc-epgstation/docker/debian/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
           tags: ${{ env.IMAGE_NAME }}:latest
