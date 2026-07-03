@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   mirakc:
-    image: junch25/mirack-epgstation-px-x1ud:latest
+    image: enprocode/mirack-epgstation-px-x1ud:latest
     container_name: mirakc
     hostname: mirakc
     init: true

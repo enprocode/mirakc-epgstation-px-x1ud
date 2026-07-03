@@ -1,6 +1,6 @@
 # CI Secrets 設定手順（Docker Hub push用）
 
-`.github/workflows/build.yml` は main ブランチへの push 時に、ビルドしたDockerイメージを Docker Hub (`junch25/mirack-epgstation-px-x1ud`) へ push します。この push には GitHub リポジトリ側で以下の Secrets 登録が必要です。
+`.github/workflows/build.yml` は main ブランチへの push 時に、ビルドしたDockerイメージを Docker Hub (`enprocode/mirack-epgstation-px-x1ud`) へ push します。この push には GitHub リポジトリ側で以下の Secrets 登録が必要です。
 
 - `DOCKERHUB_USERNAME` — Docker Hub のユーザー名
 - `DOCKERHUB_TOKEN` — Docker Hub のアクセストークン（パスワードではなくアクセストークンを使用）
@@ -25,7 +25,7 @@
 ## 3. 動作確認
 
 - main ブランチへ `mirakc-epgstation/**` 配下の変更を push するか、Actions タブから `Docker image publish` ワークフローを `workflow_dispatch` で手動実行する
-- ビルド完了後、Docker Hub (`junch25/mirack-epgstation-px-x1ud`) に `latest` タグでイメージが push されていることを確認する
+- ビルド完了後、Docker Hub (`enprocode/mirack-epgstation-px-x1ud`) に `latest` タグでイメージが push されていることを確認する
 
 ## 参考
 

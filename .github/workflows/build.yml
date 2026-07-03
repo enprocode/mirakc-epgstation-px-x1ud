@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
 
 env:
-  IMAGE_NAME: junch25/mirack-epgstation-px-x1ud
+  IMAGE_NAME: enprocode/mirack-epgstation-px-x1ud
 
 jobs:
   build:
