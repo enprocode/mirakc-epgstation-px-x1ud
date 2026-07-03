@@ -1,4 +1,4 @@
-# px-x1ud-driver
+# mirakc-epgstation-px-x1ud
 
 [![Docker image publish](https://github.com/enprocode/mirakc-epgstation-px-x1ud/actions/workflows/build.yml/badge.svg)](https://github.com/enprocode/mirakc-epgstation-px-x1ud/actions/workflows/build.yml)
 [![Docker Pulls](https://img.shields.io/docker/pulls/enprocode/mirack-epgstation-px-x1ud)](https://hub.docker.com/r/enprocode/mirack-epgstation-px-x1ud)
