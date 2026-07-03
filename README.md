@@ -9,10 +9,6 @@ PX-x1UDシリーズ地デジチューナー関連のリポジトリ一式。
 | `driver` | PX-x1UDのLinuxドライバインストールスクリプト。他方の前提となる作業。 | 現行 |
 | `mirakc-epgstation` | mirakc + epgstationのDockerビルド本体。Docker Hub (`enprocode/mirack-epgstation-px-x1ud`) に公開イメージあり、GitHub Actionsでビルド自動化済み。 | 現行・メイン |
 
-旧版だった`beta-mirakc-px-x1ud-docker-build`（`mirakc-epgstation-px-x1ud`に統合済みのベータ版）は削除済み。
-
-※ フォルダ名は実体のソフトウェア名「mirakc」に合わせて修正済みです。ただし上記のDocker Hub/GitHubリポジトリ名は上流の公開名（`mirack-epgstation-px-x1ud`、スペルはそのまま）なので変更していません。
-
 ## ドキュメント
 
 各リポジトリのREADMEを `docs/` に集約しています。
@@ -32,15 +28,23 @@ PX-x1UDシリーズ地デジチューナー関連のリポジトリ一式。
 
 | ワークフロー | 対象パス | 内容 |
 |---|---|---|
-| `dependency-review.yml` | `driver/**`, `.github/workflows/**` | PR時の依存関係レビュー（公式テンプレート準拠） |
-| `build.yml` | `mirakc-epgstation/**` | Dockerイメージをビルドし Docker Hub (`enprocode/mirack-epgstation-px-x1ud`) へpush（push時はamd64/arm64、PR時はamd64のみのビルド検証） |
+| `dependency-review.yml` | `driver/**`, `.github/workflows/**` | PR時の依存関係レビュー |
+| `build.yml` | `mirakc-epgstation/**`, タグ `v*` | Dockerイメージをビルドし Docker Hub へpush |
+| `release.yml` | `VERSION` | バージョンタグの作成とGitHub Releaseの自動作成（詳細は下記「バージョン管理・リリース」） |
 
 ※ いずれも一般的な標準構成で再作成したものです。`build.yml`の実行には `DOCKERHUB_USERNAME` / `DOCKERHUB_TOKEN` のSecrets設定が別途必要です（手順: [ci-secrets.md](docs/ci-secrets.md)）。
 
-## 比較メモ (beta版 vs 現行版)
+## バージョン管理・リリース
 
-- `docker-compose.yml`: バージョン記法が `1.1` → `3.8` に更新
-- `Dockerfile`: 現行版は `mirakc_init.sh` をリポジトリ内（`docker/mirakc/mirakc_init.sh`）から `COPY` して組み込む方式に変更（beta版はGitHubから直接wgetする方式）
-- `mirakc/config.yml`: 現行版はチャンネル数が大幅増加（関東エリア想定の局が追加）、`recdvb`のオプション(`--b25 --strip`)を削除、B25デコード用`filters`をコメントアウトから有効化に変更
+ルート直下の [`VERSION`](VERSION) ファイル（例: `1.0.0`）でリポジトリ全体のバージョンを管理しています。
 
-以上より、`beta-mirakc-px-x1ud-docker-build`は`mirakc-epgstation-px-x1ud`の前身であり、内容的には後者に統合済みと考えられます。
+1. リリースしたいタイミングで `VERSION` の値をSemVer（`X.Y.Z`）で更新し、`main`にpush（またはPRをマージ）する
+2. `release.yml` が起動し、`v` を付けたタグ（例: `v1.0.1`）を作成・push、GitHub Releaseを自動作成する
+3. タグpushをトリガーに `build.yml` が走り、Docker Hubへそのバージョンのイメージ（`enprocode/mirack-epgstation-px-x1ud:1.0.1` など）をpushする
+
+`VERSION`以外の変更（`mirakc-epgstation/**`のみの更新など）では`release.yml`は動かず、`main`への通常pushとして`:latest`イメージのみ更新されます。
+
+## ライセンス
+
+このリポジトリ内で書かれたスクリプト・設定ファイル・ドキュメントは [MIT License](LICENSE) です。
+`driver/`配下のベンダー配布ドライバ（zip）、および mirakc / EPGStation / recdvb / libaribb25 などの上流プロジェクトは、それぞれ別のライセンスに従います。

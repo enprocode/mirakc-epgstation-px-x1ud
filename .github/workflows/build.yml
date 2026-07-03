@@ -2,6 +2,7 @@ name: 'Docker image publish'
 on:
   push:
     branches: ["main"]
+    tags: ["v*"]
     paths:
       - 'mirakc-epgstation/**'
   pull_request:
@@ -34,11 +35,21 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: 'Build (and push on main)'
+      - name: 'Extract Docker metadata'
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.IMAGE_NAME }}
+          tags: |
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=semver,pattern={{version}}
+
+      - name: 'Build (and push on main/tags)'
         uses: docker/build-push-action@v6
         with:
           context: mirakc-epgstation/docker
           file: mirakc-epgstation/docker/debian/Dockerfile
           platforms: ${{ github.event_name == 'pull_request' && 'linux/amd64' || 'linux/amd64,linux/arm64' }}
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ env.IMAGE_NAME }}:latest
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
