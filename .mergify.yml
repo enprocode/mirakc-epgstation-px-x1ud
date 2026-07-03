@@ -1,0 +1,35 @@
+pull_request_rules:
+  - name: Auto-merge Dependabot minor/patch updates to GitHub Actions once dependency review passes
+    conditions:
+      - author=dependabot[bot]
+      - files~=^\.github/workflows/
+      - check-success=dependency-review
+      - or:
+          - dependabot-update-type=version-update:semver-minor
+          - dependabot-update-type=version-update:semver-patch
+    actions:
+      merge:
+        method: squash
+
+  - name: Auto-merge Dependabot minor/patch updates to the Docker image once the build passes
+    conditions:
+      - author=dependabot[bot]
+      - files~=^mirakc-epgstation/docker/
+      - check-success=Build
+      - or:
+          - dependabot-update-type=version-update:semver-minor
+          - dependabot-update-type=version-update:semver-patch
+    actions:
+      merge:
+        method: squash
+
+  - name: Flag Dependabot major version updates for manual review
+    conditions:
+      - author=dependabot[bot]
+      - dependabot-update-type=version-update:semver-major
+    actions:
+      label:
+        add:
+          - dependencies-major-review
+      comment:
+        message: "Major version update — please review manually before merging."
