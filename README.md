@@ -1,6 +1,8 @@
 # mirakc-epgstation-px-x1ud
 
 [![Docker image publish](https://github.com/enprocode/mirakc-epgstation-px-x1ud/actions/workflows/build.yml/badge.svg)](https://github.com/enprocode/mirakc-epgstation-px-x1ud/actions/workflows/build.yml)
+[![GitHub Release](https://img.shields.io/github/v/release/enprocode/mirakc-epgstation-px-x1ud)](https://github.com/enprocode/mirakc-epgstation-px-x1ud/releases)
+[![Docker Image Version](https://img.shields.io/docker/v/enprocode/mirack-epgstation-px-x1ud?sort=semver)](https://hub.docker.com/r/enprocode/mirack-epgstation-px-x1ud)
 [![Docker Pulls](https://img.shields.io/docker/pulls/enprocode/mirack-epgstation-px-x1ud)](https://hub.docker.com/r/enprocode/mirack-epgstation-px-x1ud)
 [![Docker Image Size](https://img.shields.io/docker/image-size/enprocode/mirack-epgstation-px-x1ud)](https://hub.docker.com/r/enprocode/mirack-epgstation-px-x1ud)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
