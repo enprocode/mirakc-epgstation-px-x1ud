@@ -1,12 +1,6 @@
 port: 8888
 mirakurunPath: http://mirakc:40772/
 
-# dbtype: sqlite
-# sqlite:
-#   extensions:
-#     - '/hoge/regexp.dylib'
-#   regexp: true
-
 dbtype: mysql
 mysql:
     host: mysql

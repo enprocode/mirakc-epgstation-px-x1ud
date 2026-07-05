@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Function to handle script termination
 function trap_exit() {
   echo "Stopping... $(jobs -p)"
   kill $(jobs -p) > /dev/null 2>&1 || echo "Already killed."
@@ -11,11 +10,9 @@ function trap_exit() {
   echo "Exit."
 }
 
-# Trap setup for signals
 trap "exit 0" 2 3 15
 trap trap_exit 0
 
-# Start and monitor pcscd service if it exists
 if [ -e "/etc/init.d/pcscd" ]; then
   while true; do
     echo "Starting pcscd..."
@@ -31,7 +28,5 @@ if [ -e "/etc/init.d/pcscd" ]; then
   done
 fi
 
-
-# mirack Start
 echo "mirack Start!"
 /usr/local/bin/mirakc --config /etc/mirakc/config.yml
