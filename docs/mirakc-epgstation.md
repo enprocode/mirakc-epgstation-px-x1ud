@@ -34,8 +34,10 @@ $ vim config.yml
 
 # install / インストール実行
 $ ./setup.sh
+```
 
 ## Ex. docker command
+```bash
 # start
 $ docker compose up -d
 # log
@@ -43,6 +45,7 @@ $ docker compose logs -f
 # stop
 $ docker compose down
 ```
+
 ## build / 構築
 ```bash
 $ cd mirakc-epgstation/docker/debian
